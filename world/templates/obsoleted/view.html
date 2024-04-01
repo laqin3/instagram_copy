@@ -1,0 +1,35 @@
+{% extends '_base.html' %}
+
+{% load static %}
+
+{% block title %}View Posts{% endblock %}
+
+{% block content %}
+<div class="card mb-3 mt-5" style="max-width: 780px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{% static 'water_and_sky.jpeg' %}" class="img-fluid rounded-start" alt="Profile image">
+    </div>
+    <div class="col-md-4">
+      <div class="card-body">
+        <h5 class="card-title">User Profile</h5>
+        <p class="card-text">First Name: {{user.first_name}}</p>
+        <p class="card-text">Last Name: {{user.last_name}}</p>
+        <p class="card-text">Email: {{user.email}}</p>
+      </div>
+    </div>
+    <div class="col-md-4 mt-5">
+      <a class="" type="submit" href="{% url 'world:view_post' %}">posts</a>
+      <a class="" type="submit" href="#">followers</a>
+      <a class="" type="submit" href="#">following</a>
+    </div>
+  </div>
+</div>
+{% for post in posts %}
+<div class="col-md-8 item-align-center m-4">
+  {{post.title}}
+  <img src="{{post.image.url}}" class="img-responsive" style="width: 80%; float: left; margin-right: 10px;"
+    alt="{{post.description}}">
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends '_base.html' %}
+
+{% block title %}InstagramCopy Front{% endblock %}
+
+{% block content %}
+
+{% for post in post_list %}
+<div class="card mt-3 border-0">
+    <div class="card-body">
+        <div class="container text-start">
+            <div class="row">
+                <div class="col-2">
+                    <a class="text-decoration-none text-black" href="{% url 'users:get_user_profile' user_id=post.user.id %}">{{post.user.username}}</a>
+                </div>
+                <div class="col-10 text-body-secondary">
+                    {{post.get_post_date}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <img src="{{post.image.url}}" class="card-img-bottom img-responsive shadow"
+        style="width: 80%; float: left; margin: 5px;" alt="{{post.description}}">
+
+
+
+        <div class="container">
+            <div class="row text-start">
+                <div class="col-4 d-flex text-start">
+                    <form action="{% url 'world:like_post' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_like" value="{{ post.id }}">
+                        {% if request.user not in post.liked.all %}
+                        <button class="btn text-start" type="submit">
+                            <span class="material-icons-outlined">favorite_border</span>
+                        </button>
+                        {% else %}
+                        <button class="btn text-start text-danger" type="submit">
+                            <span class="material-icons-outlined">favorite</span>
+                        </button>
+                        {% endif %}
+                    </form>
+                    <a class="text-start text-black" href="{% url 'world:add_review' post_id=post.id %}">
+                        <span class="material-icons-outlined">mode_comment</span>
+                    </a>
+                    <a class="text-start text-black" href="#">
+                        <span class="material-icons-outlined text-danger">share</span>
+                    </a>
+                </div>
+                <div class="col-auto justify-content-end">
+                    <a class="text-black" href="#">
+                        <span class="material-icons-outlined text-danger">bookmarks</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-4 d-flex">
+                    <strong>{{post.liked.all.count}} likes</strong>
+                </div>
+            </div>
+        </div>
+
+</div>
+<hr>
+{% endfor %}
+
+{% endblock %}

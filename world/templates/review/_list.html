@@ -1,0 +1,229 @@
+{% load humanize %}
+<div class="card mt-5 border-0">
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-6 text-start">
+                <a class="text-decoration-none text-black"
+                    href="{% url 'users:get_user_profile' user_id=post.user.id %}">{{post.user.username}}</a>
+            </div>
+            <div class="col-6 ">
+                <!-- Button trigger modal1: about the author -->
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#{{post.user.id}}"
+                    data-modal-id="{{review.id}}">
+                    <a class="text-black" href="#">
+                        <span class="material-symbols-outlined">more_horiz</span>
+                    </a>
+                </button>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <!-- Modal1:: about the author -->
+    <div class="modal fade" id="{{post.user.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+
+                    <div class="card border-0">
+                        <div class="card-body">
+                            <!-- trigger modal4: trigger a Reporting of the author's post -->
+                            <div class="text-center">
+                                <button class="btn" data-bs-target="#report{{post.id}}" data-bs-toggle="modal">
+                                    <a class="card-text text-decoration-none text-danger mt-1"
+                                        href="#"><strong>Report</strong></a>
+                                </button>
+                            </div>
+                            <hr>
+
+                            <div class="text-center">
+                                <a class="card-text text-decoration-none text-danger mt-1"
+                                    href="{% url 'users:unfollow' user_id=post.user.id %}"><strong>Unfollow</strong></a>
+                            </div>
+                            <hr>
+
+
+                            <div class="text-center">
+                                <a class="card-text text-decoration-none text-black mt-1"
+                                    href="{% url 'world:post_detail' post_id=post.id %}">Cancel</a>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal4: Reporting the author's post -->
+    <div class="modal fade" id="report{{post.id}}" aria-hidden="true" aria-labelledby="report{{post.id}}ToggleLabel2"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="report{{post.id}}ToggleLabel2">Report</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Why are you reporting this Item?
+                    <form action="{% url 'world:report_post' post_id=post.id %}" method="post">
+                        {% csrf_token %}
+                        <div>
+                            <input type="checkbox" name="report" id="spam" value="spam">
+                            <label for="spam"> It's spam</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="report" id="hate" value="hatred">
+                            <label for="hate"> Hate speech or symbols</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="report" id="dangerous" value="dangerous">
+                            <label for="dangerous">Violence or dangerous organizations</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="report" id="self_harmful" value="self_harmful">
+                            <label for="self_harmful">Suiside, self-injury or eating disorders</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="report" id="bullying" value="bullying">
+                            <label for="bullying">Bullying or harassment </label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="report" id="other" value="other">
+                            <label for="other">Other</label>
+                        </div>
+                        <button type="submit" class="btn btn-danger">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-target="#{{review.id}}" data-bs-toggle="modal">Back to
+                        first</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% for review in reviews %}
+    <div class="card-body">
+        <h5 class="card-title text-start">{{ review.user.username }}</h5>
+        <span class="text-body-secondary">{{review.last_modified_date|timesince}}</span>
+        <a href="#" class="card-link text-danger text-decoration-none">like</a>
+        <a href="#" class="card-link text-danger text-decoration-none">reply</a>
+
+        <!-- Button trigger modal2: about a review -->
+        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#{{review.id}}"
+            data-modal-id="{{review.id}}">
+            <a class="text-black" href="#">
+                <span class="material-symbols-outlined">more_horiz</span>
+            </a>
+        </button>
+
+        <!-- Modal2: about a reivw -->
+        <div class="modal fade" id="{{review.id}}" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+
+                        <div class="card border-0">
+                            <div class="card-body">
+                                <!-- trigger modal3: trigger reporting of a review -->
+                                <div class="text-center">
+                                    <button class="btn" data-bs-target="#report{{review.id}}" data-bs-toggle="modal">
+                                        <a class="card-text text-decoration-none text-danger mt-1"
+                                            href="#"><strong>Report</strong></a>
+                                    </button>
+                                </div>
+                                <hr>
+
+                                {% if review.user == request.user %}
+                                <div class="text-center">
+                                    <a class="card-text text-decoration-none text-danger mt-1"
+                                        href="{% url 'world:edit_review' review_id=review.id %}"><strong>Edit</strong></a>
+                                </div>
+                                <hr>
+                                <div class="text-center">
+                                    <a class="card-text text-decoration-none text-danger mt-1"
+                                        href="{% url 'world:delete_review' review_id=review.id %}"><strong>Delete</strong></a>
+                                </div>
+                                <hr>
+                                {% endif %}
+
+                                <div class="text-center">
+                                    <a class="card-text text-decoration-none text-black mt-1"
+                                        href="{% url 'world:post_detail' post_id=review.post.id %}">Cancel</a>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal3: reporting and submitting of a review -->
+        <div class="modal fade" id="report{{review.id}}" aria-hidden="true"
+            aria-labelledby="report{{review.id}}ToggleLabel2" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="report{{review.id}}ToggleLabel2">Report</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Why are you reporting this comment?
+                        <form action="{% url 'world:report_review' review_id=review.id %}" method="post">
+                            {% csrf_token %}
+                            <div>
+                                <input type="checkbox" name="report" id="spam" value="spam">
+                                <label for="spam"> It's spam</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="report" id="hate" value="hatred">
+                                <label for="hate"> Hate speech or symbols</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="report" id="dangerous" value="dangerous">
+                                <label for="dangerous">Violence or dangerous organizations</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="report" id="self_harmful" value="self_harmful">
+                                <label for="self_harmful">Suiside, self-injury or eating disorders</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="report" id="bullying" value="bullying">
+                                <label for="bullying">Bullying or harassment </label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="report" id="other" value="other">
+                                <label for="other">Other</label>
+                            </div>
+                            <button type="submit" class="btn btn-danger">Submit</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-bs-target="#{{review.id}}" data-bs-toggle="modal">Back to
+                            first</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <p class="card-text">{{ review.content }}</p>
+    </div>
+    {% endfor%}
+</div>

@@ -1,0 +1,16 @@
+{% extends '_base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}New Report Item {% endblock %}
+
+{% block content %}
+
+<form action="{% url 'world:add_report' %}" method="post" mt-5>
+    {% csrf_token %}
+    {{ form|crispy }}
+    <a class="btn btn-warning" type="button" href="{% url 'home' %}">cancel</a>
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>
+
+{% endblock %}

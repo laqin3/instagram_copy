@@ -1,0 +1,77 @@
+{% extends '_base.html' %}
+
+{% block title %}InstagramCopy Front{% endblock %}
+
+{% block content %}
+
+{% for post in friends_posts %}
+<div class="card mt-1 border-0">
+    <div class="card-body">
+        <div class="container text-start">
+            <div class="row">
+                <div class="col-2">
+                    <a class="text-decoration-none text-black" href="{% url 'users:get_user_profile' user_id=post.user.id %}">{{post.user.username}}</a>
+                </div>
+                <div class="col-10 text-body-secondary">
+                    {{post.get_post_date}}
+                </div>
+            </div>
+        </div>
+            <img src="{{post.image.url}}" class="card-img-bottom img-responsive shadow"
+                style="width: 40%; float: left; margin: 5px;" alt="{{post.description}}">
+    
+        <div class="container text-start">
+            <div class="row">
+                <div class="col-4">
+
+                    <button class="btn text-start">   
+                        <span class="material-icons-outlined" id="like-button" value="{{ post.id }}">favorite_outline</span>
+                    </button>
+                    <strong>{{post.liked.all.count}} likes</strong>
+
+                    <a class="text-start" href="#">
+                        <span class="material-icons-outlined" id="like">mode_comment</span>
+                    </a>
+                    <a class="text-start" href="#">
+                        <span class="material-icons-outlined">share</span>
+                    </a>
+                </div>
+                <div class="col-auto">
+                    <a  href="#">
+                        <span class="material-icons-outlined">bookmarks</span>
+                    </a>
+                </div>
+            </div>
+        </div>    
+    </div>
+</div>
+<hr>
+{% endfor %}
+
+{% endblock %}
+
+{% block more_body_scripts %}
+<script>
+    $(document).on('click', '#like-button', function (e){
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '{% url "world:like_post" %}',
+            data:{
+                postid : $('#like-button').val(),
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                action: 'POST'
+            },
+            success: function(json) {
+                $('#like-button').empty();
+                $('#like-button').val('');
+                document.getElementById("like-button").innerHTML = json['result']
+                console.log(json);
+            },
+            error: function (xhr, errmsg, err){
+
+            }
+        });
+    })
+</script>
+{% endblock %}

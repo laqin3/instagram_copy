@@ -1,0 +1,25 @@
+{% extends '_base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="row h-100">
+    <div class="col-sm-10 my-auto">
+    {% if user.is_authenticated %}
+        <div class="mt-5">
+            <h1>Hello World, Welcome to Instagram Copy-
+                {% if user.is_staff %}
+                    <a class="text-decoration-none" href="{% url 'world:list' %}"><em><b>Wasigram</b></em></a>
+                {% else %}
+                    <a class="text-decoration-none" href="{% url 'users:user_friends_posts_pgntd' %}"><em><b>Wasigram</b></em></a>
+                {% endif %}
+                 {#<a class="text-decoration-none" href="{% url 'users:user_friends_posts' %}"><em><b>Wasigram</b></em></a>#}
+            </h1> 
+        </div>
+    {% else %}
+        <h1 class="mt-5">Hello World, Welcome to Instagram Copy- Small World</h1>
+    {% endif %}
+    </div>
+</div>
+
+{% endblock %}

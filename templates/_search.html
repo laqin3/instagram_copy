@@ -1,0 +1,22 @@
+<button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#search" aria-controls="offcanvasExample">
+    <span class="material-symbols-outlined">search</span>
+    Search
+</button>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="search" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Search</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div>
+            <form class="d-flex" role="search" action="{% url 'users:user_search' %}" method="POST">
+                {% csrf_token %}
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="username">
+                <input class="btn btn-outline-success" type="submit">
+            </form>
+            {% block search %}
+            {% endblock %}
+        </div>
+    </div>
+</div>

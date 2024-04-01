@@ -1,0 +1,18 @@
+{% extends "_base.html" %}
+
+{% block title %}Search User{% endblock %}
+
+{% block content %}
+
+{% for user in users %}
+{% if user != request.user %}
+<div onclick="window.location='{% url 'users:get_user_profile' user_id=user.id%}'">
+    <div class="card col-4 m-3">
+        <h5 class="card-title text-start">{{user.username}}</h5>
+        <h6 class="card-subtitle mb-2 text-start text-body-secondary">{{user.first_name}}</h6>
+    </div>   
+</div>
+{% endif %}
+{% endfor %}
+
+{% endblock %}

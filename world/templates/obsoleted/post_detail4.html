@@ -1,0 +1,109 @@
+{% load reviews %}
+
+<!-- Button trigger modal -->
+
+{% for post in posts %}
+ <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#postDetail">
+    <a href="{% url 'world:post_detail' pk=post.id %}">
+        <img src="{{post.image.url}}" class="img-responsive shadow" style="width: 20%; float: left; margin: 5px;"
+          alt="{{post.description}}">
+    </a>
+</button>
+
+    
+{% endfor %}
+  
+<!-- Modal -->
+<div class="modal fade" id="postDetail" tabindex="-1" aria-labelledby="postDetailLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+    
+    <div class="modal-body">
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-8 mt-5">
+                    <div class="sticky-top">
+                        <div class="row">
+                            <div class="col-3">
+                            </div>
+        
+                            <div class="col-4 text-start">
+                                <h4 class="">{{post.title}}</h4>
+                            </div>
+        
+                            {% if post.user.id == request.user.id %}
+                            <div class="col-3 justify-content-end">
+                                <a class="text-danger" href="{% url 'world:delete_post' post_id=post.id %}">
+                                    <span class="material-icons-outlined">delete</span>
+                                </a>
+                            </div>
+                            {% endif %}
+                            <div class="col-2">
+                            </div>
+        
+                        </div>
+                        <img src="{{post.image.url}}" class="img-responsive shadow" style="width: 50%; float: center; margin: 5px;"
+                            alt="{{post.description}}">
+                            
+                                
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+        
+                            <div class="col-md-4 text-start">
+                                <p>{{post.description}}</p>
+                            </div>
+                            <div class="col-md-3 text-start d-flex">
+                                <span>
+                                    <form action="{% url 'world:like_post' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="post_like"  value="{{ post.id }}">
+                                        {% if request.user not in post.liked.all %}
+                                            <button class="btn text-start"  type="submit">   
+                                                <span class="material-icons-outlined">favorite_border</span>
+                                            </button>
+                                        {% else %}
+                                            <button class="btn text-start text-danger" type="submit">
+                                                <span class="material-icons-outlined">favorite</span>
+                                            </button>
+                                        {% endif %}
+                                    </form>
+                                </span>
+                                <a class="text-black" href="{% url 'world:add_review' post_id=post.id %}">
+                                    <span class="material-icons-outlined">mode_comment</span>
+                                </a>
+                                <a class="text-black" href="#">
+                                    <span class="material-icons-outlined">share</span>
+                                </a>
+                                <a class="text-black" href="#">
+                                    <span class="material-icons-outlined">bookmarks</span>
+                                </a>
+                            </div>
+                            
+                            <div class="col-md-2">
+                            </div>
+                        </div>
+                                
+                    </div>
+                </div>
+                <div class="col-4 scrollist">
+                    {% reviews_template %}
+                </div>
+            </div>
+        </div>
+
+        
+
+
+
+
+
+
+
+
+    </div> 
+    </div>
+</div>
+</div>

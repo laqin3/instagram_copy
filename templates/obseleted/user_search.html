@@ -1,0 +1,40 @@
+{% extends "_base.html" %}
+
+{% block title %}Search User{% endblock %}
+
+{% block search %}
+<button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#search" aria-controls="offcanvasExample">
+    <span class="material-symbols-outlined">search</span>
+    Search
+</button>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="search" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Search</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div>
+            <form class="d-flex" role="search" action="{% url 'users:search_user' %}" method="POST">
+                {% csrf_token %}
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="username">
+                <input class="btn btn-outline-success" type="submit">
+            </form>
+
+            {% if results.count > 1 %}
+            {%for result in results %}
+            <h5>{{result.username}}</h5>
+            <h5>{{result.first_name}}</h5>
+            <h5>{{result.last_name}}</h5>
+            {% endfor %}
+            {% else %}
+            <h5>{{results.username}}</h5>
+            <h5>{{results.first_name}}</h5>
+            <h5>{{results.last_name}}</h5>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

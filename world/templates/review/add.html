@@ -1,0 +1,14 @@
+{% extends '_base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Add Review{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <a class="btn btn-warning" type="button" href="{% url 'world:post_detail' post_id=post.id %}">cancel</a>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+{% endblock %}

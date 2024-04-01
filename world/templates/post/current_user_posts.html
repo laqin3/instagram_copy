@@ -1,0 +1,55 @@
+{% extends '_base.html' %}
+
+{% load static %}
+
+{% block title %}View Posts{% endblock %}
+
+{% block content %}
+<div class="card mb-3 mt-5" style="max-width: 780px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{% static 'water_and_sky.jpeg' %}" class="img-fluid rounded-start" alt="Profile image">
+    </div>
+    <div class="col-md-4">
+      <div class="card-body text-start">
+        <h5 class="card-title">User Posts</h5>
+        <p class="card-text">Name: {{user.first_name}} {{user.last_name}}</p>
+        <p class="card-text">Email: {{user.email}}</p>
+      </div>
+    </div>
+    <div class="col-md-4 mt-5">
+
+      <div class="col-auto">
+        <a class="text-decoration-none text-black" type="submit" href="{% url 'world:view_posts' %}">{{user.post_set.count}} post{{user.post_set.count|pluralize}}</a>
+      </div>
+      <div class="col-auto">
+        {% include 'friend/_followers.html' %}
+      </div>
+      <div class="col-auto">
+        {% include 'friend/_following.html' %}
+      </div>
+
+
+    </div>
+  </div>
+</div>
+{%if posts.count > 0%}
+{% for post in posts %}
+<div class="col-md-8">
+  <a href="{% url 'world:post_detail' post_id=post.id %}" >
+    <img src="{{post.image.url}}" class="img-responsive shadow" style="width: 20%; float: left; margin: 5px;"
+      alt="{{post.description}}">
+  </a>
+</div>
+{% endfor %}
+{%else%}
+<div class="row h-20">
+  <div class="col-sm-8 my-auto">
+      <div class="mt-5">
+          <h4>You have no posts yet, please add post <a href="{% url 'world:add_post' %}">here</a></h4>
+      </div>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}

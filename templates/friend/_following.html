@@ -1,0 +1,34 @@
+ <!-- Button trigger modal -->
+ <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#followeingModal">
+  <a class="text-decoration-none text-black" type="submit" href="#">{{following.count}} following</a>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="followeingModal" tabindex="-1" aria-labelledby="followingModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="followingModalLabel">Following</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="card border-0">
+          <div class="card-body">
+            {% for each_following in following %}
+            <div class="row mt-1">
+              <div class="text-start">
+                <p><a class="card-text text-decoration-none text-black" href="{% url 'users:get_user_profile' user_id=each_following.to_user.id %}">{{each_following.to_user.username}}</a></p>
+              </div>
+            </div>
+            {% endfor %}
+ 
+       
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

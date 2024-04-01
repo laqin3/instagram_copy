@@ -1,0 +1,46 @@
+{% extends '_base.html' %}
+
+{% load static %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="card mb-3 mt-5" style="max-width: 780px;">
+  <div class="row g-0">
+
+    <div class="col-md-4">
+      <img src="{% static 'water_and_sky.jpeg' %}" class="img-fluid rounded-start" alt="Profile image">
+    </div>
+
+    <div class="col-md-8">
+      <div class="card-body">
+
+        <div class="row justify-content-around">
+          <div class="col-auto">
+            <h5 class="card-tex">{{user.username}}</h5>
+          </div>
+          <div class="col-auto">
+            <a class="text-decoration-none text-black" href="{% url 'users:edit_profile' %}">Edit profile</a>
+          </div>
+          <div class="col-auto">
+            {% include 'friend/_friend_status.html' %}
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col-auto">
+            <a class="text-decoration-none text-black" type="submit" href="{% url 'world:view_posts' %}">{{user.post_set.count}} post{{user.post_set.count|pluralize}}</a>
+          </div>
+          <div class="col-auto">
+            {% include 'friend/_followers.html' %}
+          </div>
+          <div class="col-auto">
+            {% include 'friend/_following.html' %}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

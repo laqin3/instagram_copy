@@ -1,0 +1,109 @@
+{% extends '_base.html' %}
+
+{% load static %}
+
+{% block title %}View Posts{% endblock %}
+
+{% block content %}
+<div class="card mb-3 mt-5" style="max-width: 780px;">
+  <div class="row d-flex justify-content-around">
+    <div class="col-md-4">
+      <img src="{% static 'water_and_sky.jpeg' %}" class="img-fluid rounded-start" alt="Profile image">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <div class="row">
+          <h5 class="col-4">{{other_user.username}}</h5>
+          <div class="col-4">
+            {% if other_user.username != request.user.username %}
+         
+                {% if friend_request.status_on_from_user == 'follow' %}
+                <p>
+                    <a class="text-decoration-none text-black" href="{% url 'users:send_friend_request' other_user_id=other_user.id %}">{{other_user_status}}</a>
+                </p> 
+                {% else %}
+                <p>
+                     <!-- trigger modal5: trigger update request sent status -->                  
+                      <button class="btn" data-bs-target="#{{other_user.id}}" data-bs-toggle="modal">
+                        <a class="text-decoration-none text-black" href="#">{{other_user_status}}</a>
+                      </button>
+                </p> 
+                {% endif %}
+            {% else %}
+                <p>
+                    <a class="text-decoration-none text-black" href="{% url 'users:edit_profile' %}">Edit profile</a>
+                </p>
+            {% endif %}
+          </div>
+          <div class="col-4 text-center">
+            {% include 'friend/_friend_status.html' %}
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col-auto">
+            <a class="text-decoration-none text-black" type="submit" href="{% url 'users:get_user_profile' user_id=other_user.id %}">{{posts.count}} post{{posts.count|pluralize}}</a>
+          </div>
+          <div class="col-auto">
+            {% include 'friend/_followers.html' %}
+          </div>
+          <div class="col-auto">
+            {% include 'friend/_following.html' %}
+          </div>
+         
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%if posts.count > 0%}
+{% for post in posts %}
+<div class="col-md-8">
+  <a href="{% url 'world:post_detail' post_id=post.id %}">
+    <img src="{{post.image.url}}" class="img-responsive shadow" style="width: 20%; float: left; margin: 5px;"
+      alt="{{post.description}}">
+  </a>
+</div>
+{% endfor %}
+{%else%}
+    <h4 class="col-8 m-5">User does not have any posts yet, please visit <a href="{% url 'users:user_friends_posts_pgntd' %}">here</a> for your other friends' posts</h4>
+{% endif %}
+
+
+ <!-- Modal5:: about the author -->
+ <div class="modal fade" id="{{other_user.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+  
+          <div class="card border-0">
+              <div class="card-body">
+            
+
+                  {% if friend_request.status_on_from_user == 'request_sent' %}
+                  <div class="text-center">
+                    <a class="card-text text-decoration-none text-danger mt-1" href="{% url 'users:unsend_request' user_id=other_user.id %}"><strong>Unsend Request</strong></a>
+                </div>
+                <hr>
+
+                  {% elif friend_request.status_on_from_user == 'following' %}
+                  <p>
+                    <div class="text-center">
+                      <a class="card-text text-decoration-none text-danger mt-1" href="{% url 'users:unfollow' user_id=other_user.id %}"><strong>Unfollow</strong></a>
+                    </div>
+                  </p> 
+                  {% endif %}
+
+
+
+                <div class="text-center">
+                  <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+                </div>
+
+
+              </div>
+          </div>
+
+
+{% endblock %}

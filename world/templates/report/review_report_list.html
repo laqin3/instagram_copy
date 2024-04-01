@@ -1,0 +1,45 @@
+{% extends '_base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}New Report Item {% endblock %}
+
+{% block content %}
+
+{% if request.user.is_staff %}
+  <h2 class="mt-5">Reported Reviews</h2>
+  <hr>
+  <table class="table table-striped">
+      <thead>
+        <tr class="text-start">
+          <th scope="col">#</th>
+          <th scope="col">Type</th>
+          <th scope="col">Category</th>
+          <th scope="col">Review Author</th>
+          <th scope="col">Review Id</th>
+          <th scope="col">Reporter username</th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for review_report in review_reports %}
+        <tr class="text-start" onclick="window.location='{% url 'world:review_report_detail' report_id=review_report.id %}'">
+          <th scope="row">{{review_report.id}}</th>
+          <td>Review</td>
+          <td>{{review_report.category}}</td>
+          <td>{{review_report.review.user.username}}</td>
+          <td>{{review_report.review.id}}</td>
+          <td>{{review_report.user.username}}</td>
+        </tr>
+         {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="row h-100">
+        <div class="col-sm-10 my-auto">
+          <h1 class="mt-5">You don't have access to this link, please visit <a class="text-success text-decoration-none" href="{% url 'users:user_friends_posts_pgntd' %}">other pages</a></h1>
+        </div>
+    </div>
+    {% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends '_base.html' %}
+
+{% load static %}
+
+{% block title %}View Posts{% endblock %}
+
+{% block content %}
+<div class="card mb-3 mt-5" style="max-width: 780px;">
+  <div class="row d-flex justify-content-around">
+    <div class="col-md-4">
+      <img src="{% static 'water_and_sky.jpeg' %}" class="img-fluid rounded-start" alt="Profile image">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <div class="row">
+          <h5 class="col-4">{{other_user.username}}</h5>
+          <div class="col-4">
+            {% if friend_request.status_on_from_user == 'follow' %}
+            <p>
+                <a class="text-decoration-none text-black" href="{% url 'users:send_friend_request' other_user_id=other_user.id %}">{{other_user_status}}</a>
+            </p> 
+            {% else %}
+            <p>
+                <a class="text-decoration-none text-black" href="#">{{other_user_status}}</a>
+            </p> 
+            {% endif %}
+          </div>
+          <a class="col-4  text-black" href="#">
+             <span class="material-symbols-outlined">more_horiz</span>
+          </a>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col-auto">
+            <a class="text-decoration-none text-black" type="submit" href="{% url 'users:get_user_profile' user_id=other_user.id %}">{{posts.count}} post{{posts.count|pluralize}}</a>
+          </div>
+          <div class="col-auto">
+            {% include 'friend/_followers.html' %}
+          </div>
+          <div class="col-auto">
+            {% include 'friend/_following.html' %}
+          </div>
+         
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%if posts.count > 0%}
+
+<div class="col-md-8">
+  {% include 'post/post_detail.html' %}
+</div>
+
+{%else%}
+    <h4 class="col-8 m-5">User does not have any posts yet, please visit <a href="{% url 'world:list' %}">here</a> for other posts</h4>
+{% endif %}
+
+{% endblock %}

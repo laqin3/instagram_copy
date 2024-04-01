@@ -1,0 +1,47 @@
+{% extends '_base.html' %}
+
+{% load static %}
+
+{% block title %}View Posts{% endblock %}
+
+{% block content %}
+<div class="card mb-3 mt-5" style="max-width: 780px;">
+  <div class="row g-0">
+
+    <div class="col-md-4">
+      <img src="{% static 'water_and_sky.jpeg' %}" class="img-fluid rounded-start" alt="Profile image">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <div class="row d-flex justify-content-around">
+          <h5 class="col-4">{{friend_request.to_user.username}}</h5>
+          <div class="col-4"> 
+            <p><a class="text-decoration-none text-black" href="#"></a>{{friend_request.status}}</p>
+          </div>
+          <a class="col-4 text-black" href="#">
+             <span class="material-symbols-outlined">more_horiz</span>
+          </a>
+        </div>
+        <div class="d-flex justify-content-around">
+           <a class="text-decoration-none text-black" type="submit" href="#">{{friend_request.to_user.post_set.count}} post{{user.post_set.count|pluralize}}</a>
+           <a class="text-decoration-none text-black" type="submit" href="#">{{friend_request.to_user.friend_set.count}}followers{{user.friend_set.count|pluralize}}</a>
+           <a class="text-decoration-none text-black" type="submit" href="#">{{friend_request.to_user.friend_set.count}}following{{user.friend_set.count|pluralize}}</a>
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>
+{%if posts.count > 0%}
+{% for post in posts %}
+<div class="col-md-8">
+  <a href="{% url 'world:post_detail' post_id=post.id %}">
+    <img src="{{post.image.url}}" class="img-responsive shadow" style="width: 20%; float: left; margin: 5px;"
+      alt="{{post.description}}">
+  </a>
+</div>
+{% endfor %}
+{%else%}
+<h4 class="col-8 m-5">User does not have any posts yet, please visit other posts <a href="{% url 'world:list' %}">here</a></h4>
+{% endif %}
+
+{% endblock %}

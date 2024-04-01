@@ -1,0 +1,31 @@
+{% extends '_base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}New Report Item {% endblock %}
+
+{% block content %}
+<div class="row mt-5">
+    <div class="container col-9">
+        <div class="card mt-5">
+            <h5 class="card-header">{{type}} report</h5>
+            <div class="card-body">
+                <form action="{% url 'world:report_approval' %}" method="post">
+                    {% csrf_token %}
+                    {% if "post" in request.build_absolute_uri  %}
+                        <h5 class="card-title">Post Id - {{report.post.id}} violated "{{report.report.category}}" category</h5>
+                        <p class="card-text">The {{type}} title is "{{report.post.title}}"</p>
+                        <input type="submit" class="btn btn-danger" name="post_id" value="Approve for {{report.post.id}}">
+                        <a href="{% url 'world:post_report_list' %}" class="btn btn-warning">Deny</a>
+                    {% elif "review" in request.build_absolute_uri  %}
+                        <h5 class="card-title">Review Id - {{report.review.id}} violated "{{report.report.category}}" category</h5>
+                        <p class="card-text">The {{type}} content is "{{report.review.content}}"</p>
+                        <input type="submit" class="btn btn-danger" name="review_id" value="Approve for {{report.review.id}}">
+                        <a href="{% url 'world:review_report_list' %}" class="btn btn-warning">Deny</a>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

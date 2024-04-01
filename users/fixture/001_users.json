@@ -1,0 +1,464 @@
+[
+{
+    "model": "users.instagramcopyuser",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$yes0gNYiTqJkRYApAsBQMO$Ijht/fCnBfuEiMe4dHB1R0nzjiHKUFfLdmK0NYKPf+Q=",
+        "last_login": "2023-12-15T17:40:47.365Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "laqin3@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2023-11-16T19:09:20Z",
+        "groups": [],
+        "user_permissions": [
+            1,
+            2,
+            3,
+            4,
+            9,
+            10,
+            11,
+            12,
+            5,
+            6,
+            7,
+            8,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+        ],
+        "friends": [
+            2,
+            3
+        ]
+    }
+},
+{
+    "model": "users.instagramcopyuser",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$Y78FYRxyPmqIr6N8Jby2EE$fI8hm4WCQjQdnfX7tpJOJsOlZDSQ6eA72+Kb9N+OoHo=",
+        "last_login": "2023-12-14T13:42:08Z",
+        "is_superuser": false,
+        "username": "wasila",
+        "first_name": "Wasila",
+        "last_name": "Kasim",
+        "email": "wasila201312@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-11-18T15:54:18Z",
+        "groups": [],
+        "user_permissions": [],
+        "friends": [
+            3,
+            4,
+            1,
+            5,
+            6
+        ]
+    }
+},
+{
+    "model": "users.instagramcopyuser",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$XPdy78Wua82cky9E0TaJUO$YP2wM7jcY4P1zb0K2cLwBFjxHHDEvtiBlMCI0vsbFXM=",
+        "last_login": "2023-12-14T21:55:53.360Z",
+        "is_superuser": false,
+        "username": "wasima",
+        "first_name": "Wasima",
+        "last_name": "Kasim",
+        "email": "wasima201103@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-11-18T15:57:13Z",
+        "groups": [],
+        "user_permissions": [],
+        "friends": [
+            5,
+            4,
+            2
+        ]
+    }
+},
+{
+    "model": "users.instagramcopyuser",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$yKYtqFGS4J9EMhWTNAsMX1$keeHuthuLBCBzmeH5Dzx8ug3NBRUk+GTkeKQgLj+iIo=",
+        "last_login": "2023-12-09T15:57:45Z",
+        "is_superuser": false,
+        "username": "savut",
+        "first_name": "Savut",
+        "last_name": "Kasim",
+        "email": "laqin3@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-11-18T15:58:50Z",
+        "groups": [],
+        "user_permissions": [],
+        "friends": [
+            3,
+            2,
+            5
+        ]
+    }
+},
+{
+    "model": "users.instagramcopyuser",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$Z6YPNYm0eDOjCM1DrT0KCY$EXqXYXpJbDKAl010Xdw1f/CHm7w1xSfIsFXjcol4uOY=",
+        "last_login": "2023-12-15T17:38:49.091Z",
+        "is_superuser": false,
+        "username": "user1",
+        "first_name": "User1",
+        "last_name": "User1",
+        "email": "user1@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-11-19T21:03:02.046Z",
+        "groups": [],
+        "user_permissions": [],
+        "friends": [
+            3,
+            2
+        ]
+    }
+},
+{
+    "model": "users.instagramcopyuser",
+    "pk": 6,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$2gZbpuKmgqXW9AOOQjyPt6$9CcSexdQZrY+BNS4cbCSomM/4dyrA2szbDXKMTMQztI=",
+        "last_login": "2023-12-12T21:45:11.209Z",
+        "is_superuser": false,
+        "username": "user2",
+        "first_name": "user2",
+        "last_name": "user2",
+        "email": "s.kasimu2019@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-11-24T13:49:57.319Z",
+        "groups": [],
+        "user_permissions": [],
+        "friends": [
+            4,
+            2,
+            5
+        ]
+    }
+},
+{
+    "model": "users.instagramcopyuser",
+    "pk": 8,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$1V14PVhZZYsxjr1by6wkI5$not9TM8qP3rurOhsDxt8M6ZOZqrPsqQPltfGYvUwCEU=",
+        "last_login": "2023-12-15T17:29:23.069Z",
+        "is_superuser": false,
+        "username": "user3",
+        "first_name": "User3_F",
+        "last_name": "User3_L",
+        "email": "user3@random.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-12-14T15:41:00.882Z",
+        "groups": [],
+        "user_permissions": [],
+        "friends": []
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 1,
+    "fields": {
+        "from_user": 6,
+        "to_user": 4,
+        "status_on_from_user": "following",
+        "status_on_to_user": "follower"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 2,
+    "fields": {
+        "from_user": 6,
+        "to_user": 5,
+        "status_on_from_user": "following",
+        "status_on_to_user": "follower"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 3,
+    "fields": {
+        "from_user": 4,
+        "to_user": 5,
+        "status_on_from_user": "following",
+        "status_on_to_user": "follower"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 4,
+    "fields": {
+        "from_user": 5,
+        "to_user": 4,
+        "status_on_from_user": "follow",
+        "status_on_to_user": "follow"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 5,
+    "fields": {
+        "from_user": 5,
+        "to_user": 6,
+        "status_on_from_user": "follow",
+        "status_on_to_user": "follow"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 6,
+    "fields": {
+        "from_user": 5,
+        "to_user": 5,
+        "status_on_from_user": "follow",
+        "status_on_to_user": "follow"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 7,
+    "fields": {
+        "from_user": 5,
+        "to_user": 3,
+        "status_on_from_user": "following",
+        "status_on_to_user": "follower"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 8,
+    "fields": {
+        "from_user": 3,
+        "to_user": 5,
+        "status_on_from_user": "following",
+        "status_on_to_user": "follower"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 10,
+    "fields": {
+        "from_user": 3,
+        "to_user": 4,
+        "status_on_from_user": "following",
+        "status_on_to_user": "follower"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 11,
+    "fields": {
+        "from_user": 2,
+        "to_user": 3,
+        "status_on_from_user": "following",
+        "status_on_to_user": "follower"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 12,
+    "fields": {
+        "from_user": 2,
+        "to_user": 4,
+        "status_on_from_user": "following",
+        "status_on_to_user": "follower"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 13,
+    "fields": {
+        "from_user": 5,
+        "to_user": 2,
+        "status_on_from_user": "following",
+        "status_on_to_user": "follower"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 14,
+    "fields": {
+        "from_user": 4,
+        "to_user": 4,
+        "status_on_from_user": "follow",
+        "status_on_to_user": "follow"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 15,
+    "fields": {
+        "from_user": 1,
+        "to_user": 2,
+        "status_on_from_user": "following",
+        "status_on_to_user": "follower"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 16,
+    "fields": {
+        "from_user": 4,
+        "to_user": 3,
+        "status_on_from_user": "following",
+        "status_on_to_user": "follower"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 17,
+    "fields": {
+        "from_user": 3,
+        "to_user": 3,
+        "status_on_from_user": "follow",
+        "status_on_to_user": "follow"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 20,
+    "fields": {
+        "from_user": 6,
+        "to_user": 2,
+        "status_on_from_user": "following",
+        "status_on_to_user": "follower"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 28,
+    "fields": {
+        "from_user": 2,
+        "to_user": 6,
+        "status_on_from_user": "following",
+        "status_on_to_user": "follower"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 29,
+    "fields": {
+        "from_user": 2,
+        "to_user": 5,
+        "status_on_from_user": "following",
+        "status_on_to_user": "follower"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 30,
+    "fields": {
+        "from_user": 2,
+        "to_user": 1,
+        "status_on_from_user": "following",
+        "status_on_to_user": "follower"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 31,
+    "fields": {
+        "from_user": 4,
+        "to_user": 2,
+        "status_on_from_user": "following",
+        "status_on_to_user": "follower"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 32,
+    "fields": {
+        "from_user": 1,
+        "to_user": 3,
+        "status_on_from_user": "following",
+        "status_on_to_user": "follower"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 33,
+    "fields": {
+        "from_user": 3,
+        "to_user": 2,
+        "status_on_from_user": "following",
+        "status_on_to_user": "follower"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 34,
+    "fields": {
+        "from_user": 6,
+        "to_user": 3,
+        "status_on_from_user": "request_sent",
+        "status_on_to_user": "request_received"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 36,
+    "fields": {
+        "from_user": 8,
+        "to_user": 4,
+        "status_on_from_user": "follow",
+        "status_on_to_user": "follow"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 37,
+    "fields": {
+        "from_user": 5,
+        "to_user": 8,
+        "status_on_from_user": "follow",
+        "status_on_to_user": "follow"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 38,
+    "fields": {
+        "from_user": 1,
+        "to_user": 5,
+        "status_on_from_user": "follow",
+        "status_on_to_user": "follow"
+    }
+},
+{
+    "model": "users.friendrequest",
+    "pk": 39,
+    "fields": {
+        "from_user": 1,
+        "to_user": 8,
+        "status_on_from_user": "follow",
+        "status_on_to_user": "follow"
+    }
+}
+]

@@ -1,0 +1,6 @@
+crispy-bootstrap5==2023.10
+Django==4.2
+django-crispy-forms==2.1
+Pillow==10.1.0
+requests==2.31.0
+sendgrid==6.11.0
